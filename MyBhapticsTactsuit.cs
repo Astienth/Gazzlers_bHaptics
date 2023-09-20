@@ -15,6 +15,7 @@ namespace MyBhapticsTactsuit
         public bool suitDisabled = true;
         public bool systemInitialized = false;
         // Event to start and stop the heartbeat thread
+        private static ManualResetEvent Shield_mrse = new ManualResetEvent(false);
         private static ManualResetEvent HeartBeat_mrse = new ManualResetEvent(false);
         public static bool headUnderwater = false;
         // dictionary of all feedback patterns found in the bHaptics directory
@@ -35,6 +36,17 @@ namespace MyBhapticsTactsuit
                 Thread.Sleep(1000);
             }
         }
+        public void ShieldFunc()
+        {
+            while (true)
+            {
+                // Check if reset event is active
+                Shield_mrse.WaitOne();
+                PlaybackHaptics("ShieldUseArmsL");
+                PlaybackHaptics("ShieldUseVestL");
+                Thread.Sleep(1000);
+            }
+        }
 
         public TactsuitVR()
         {
@@ -52,6 +64,8 @@ namespace MyBhapticsTactsuit
             LOG("Starting HeartBeat thread...");
             Thread HeartBeatThread = new Thread(HeartBeatFunc);
             HeartBeatThread.Start();
+            Thread ShieldThread = new Thread(ShieldFunc);
+            ShieldThread.Start();
         }
 
         public void LOG(string logStr)
@@ -110,6 +124,15 @@ namespace MyBhapticsTactsuit
                 LOG("Feedback not registered: " + key);
             }
         }
+        public void StartShield()
+        {
+            Shield_mrse.Set();
+        }
+
+        public void StopShield()
+        {
+            Shield_mrse.Reset();
+        }
 
         public void StartHeartBeat()
         {
@@ -138,6 +161,7 @@ namespace MyBhapticsTactsuit
         public void StopThreads()
         {
             StopHeartBeat();
+            StopShield();
         }
 
 

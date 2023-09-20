@@ -47,6 +47,10 @@
       <HintPath>libs\Bhaptics.Tact.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Runtime">
+      <HintPath>..\..\..\..\GAMES\GAZZLERS\GAZZLERS_Data\Managed\Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
