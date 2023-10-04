@@ -5,6 +5,8 @@
 
 </br>[https://store.steampowered.com/app/1707620/GAZZLERS/](https://store.steampowered.com/app/1707620/GAZZLERS/)
 
+☕ If you wanna show some support you can buy me a coffee : https://www.buymeacoffee.com/astienth4
+
 ## Devices supported : Vest, Arms and TactVisor
 
 ## Manual installation</br>
